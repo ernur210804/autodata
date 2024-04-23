@@ -34,9 +34,7 @@ function ExtractAndSave(url) {
         try {
             yield (0, DbConnect_1.connectToMongoDB)();
             const { type, city, year, floor } = yield (0, parser_1.parseWebsite)(url);
-            // Save to MongoDB
             console.log('Type:', type, 'City:', city, 'Year:', year, 'Floor:', floor);
-            // Save logic here
         }
         catch (error) {
             console.error('Error extracting and saving data:', error);

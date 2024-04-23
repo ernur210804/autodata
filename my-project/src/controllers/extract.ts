@@ -20,9 +20,7 @@ export async function ExtractAndSave(url: string): Promise<void> {
     try {
         await connectToMongoDB();
         const { type, city, year, floor } = await parseWebsite(url);
-        // Save to MongoDB
         console.log('Type:', type, 'City:', city, 'Year:', year, 'Floor:',floor);
-        // Save logic here
     } catch (error) {
         console.error('Error extracting and saving data:', error);
         throw error;

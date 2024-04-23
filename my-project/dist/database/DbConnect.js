@@ -15,15 +15,14 @@ const connectionString = 'mongodb://localhost:27017/parser';
 function connectToMongoDB() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            // Connect to MongoDB
             const client = yield mongodb_1.MongoClient.connect(connectionString, {
                 // @ts-ignore
-                useNewUrlParser: true, // Use the new URL parser
+                useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
             console.log('Connected to MongoDB');
-            const db = client.db(); // Get the database instance
-            return { client, db }; // Return both client and database instance
+            const db = client.db();
+            return { client, db };
         }
         catch (error) {
             console.error('Error connecting to MongoDB:', error);
@@ -34,7 +33,7 @@ function connectToMongoDB() {
 exports.connectToMongoDB = connectToMongoDB;
 function saveDataToMongoDB(data) {
     return __awaiter(this, void 0, void 0, function* () {
-        const { client, db } = yield connectToMongoDB(); // Destructure client and db from the returned object
+        const { client, db } = yield connectToMongoDB();
         try {
             const collection = db.collection('savedData');
             const result = yield collection.insertOne(data);
@@ -45,7 +44,7 @@ function saveDataToMongoDB(data) {
             throw new Error('Failed to save data to MongoDB');
         }
         finally {
-            yield client.close(); // Close the client connection in the finally block
+            yield client.close();
         }
     });
 }
